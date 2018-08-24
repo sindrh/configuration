@@ -1,0 +1,14 @@
+" Project-specific VIM-settings.
+
+let g:rootdir = '~/myproject/src'
+set path+=~/myproject/src/*
+
+function! UpdateTags()
+  let tagfilename = g:rootdir . 'tags'
+  let cmd = 'ctags -R -f ' . tagfilename . ' ' . g:rootdir . ' &'
+  let resp = system(cmd)
+endfunction
+
+autocmd BufWritePost *.cpp,*.h,*.hpp,*.c,*.cc call UpdateTags()
+autocmd VimEnter * NERDTree
+
