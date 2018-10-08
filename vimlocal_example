@@ -5,7 +5,7 @@ set path+=~/myproject/src/*
 
 function! UpdateTags()
   let tagfilename = g:rootdir . 'tags'
-  let cmd = 'ctags -R -f ' . tagfilename . ' ' . g:rootdir . ' &'
+  let cmd = 'ctags -R -f ' . g:tagfilename . ' ' . g:rootdir . ' --c++-kinds=+p --fields=+iaS --extra=+q &'
   let resp = system(cmd)
 endfunction
 
