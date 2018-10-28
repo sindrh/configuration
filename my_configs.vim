@@ -4,9 +4,11 @@
 set number 
 set mouse=a
 
+let cwidth=100
+
 " Setter en rød linje ved kolonne 100.
 if exists('+colorcolumn')
-  set colorcolumn=100
+  let &colorcolumn=cwidth
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 endif
@@ -22,7 +24,9 @@ map <leader>bn :bn<cr>
 map <leader>bp :bp<cr>
 map <leader>bb :e#<cr>
 
-let g:NERDTreeWinSize=90
+let wwidth=winwidth('%')
+let ntwidth=wwidth-cwidth-6
+let g:NERDTreeWinSize=ntwidth
 let g:NERDTreeShowHidden=1
 
 " Leter etter en .vimlocal-fil der man starter VIM. Fint for prosjekt-spesifikk konfigurasjon.
