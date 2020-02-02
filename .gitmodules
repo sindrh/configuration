@@ -4,3 +4,6 @@
 [submodule "vimrc"]
 	path = vimrc
 	url = https://github.com/amix/vimrc
+[submodule "my_plugins/vim-clang-format"]
+	path = my_plugins/vim-clang-format
+	url = https://github.com/rhysd/vim-clang-format
