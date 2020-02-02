@@ -1,0 +1,6 @@
+[submodule "my_plugins/coc.nvim"]
+	path = my_plugins/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
+[submodule "vimrc"]
+	path = vimrc
+	url = https://github.com/amix/vimrc
