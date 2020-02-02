@@ -35,7 +35,32 @@ let wwidth=winwidth('%')
 let ntwidth=wwidth-cwidth-6
 let g:NERDTreeWinSize=ntwidth
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos="left"
+
+let g:find_cmd=""
+if has("win32")
+    let g:find_cmd="C:\\Program\ Files\\Git\\usr\\bin\\find.exe"
+else
+    let g:find_cmd="find"
+endif
+
+function FindFileWithExtension(filename, endings)
+    for i in a:endings
+        let filename_full=a:filename . i
+        let result=system("\"" . g:find_cmd . "\"" . ' -iname ' . filename_full)
+        if result != ""
+            execute "e " . result
+            return
+        endif
+    endfor
+endfunction
+
+let header_extensions=[".h", ".hpp"]
+let src_extensions=[".cpp", ".c", ".cxx"]
+
+" Switch between header and source file using <leader> + shortcut
+map <leader>gt :call FindFileWithExtension(expand("%:t:r"), header_extensions)<cr>
+map <leader>gb :call FindFileWithExtension(expand("%:t:r"), src_extensions)<cr>
 
 " Look for a .vimlocal file in the same folder where VIM is started. Nice for project-specific settings.
 silent! so .vimlocal
