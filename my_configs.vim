@@ -55,12 +55,13 @@ function FindFileWithExtension(filename, endings)
     endfor
 endfunction
 
-let header_extensions=[".h", ".hpp"]
-let src_extensions=[".cpp", ".c", ".cxx"]
+" List of extensions. If you like to, you can redefine these in a project-specific .vimlocal file.
+let g:header_extensions=[".h", ".hpp"]
+let g:src_extensions=[".cpp", ".c", ".cxx"]
 
 " Switch between header and source file using <leader> + shortcut
-map <leader>gt :call FindFileWithExtension(expand("%:t:r"), header_extensions)<cr>
-map <leader>gb :call FindFileWithExtension(expand("%:t:r"), src_extensions)<cr>
+map <leader>gt :call FindFileWithExtension(expand("%:t:r"), g:header_extensions)<cr>
+map <leader>gb :call FindFileWithExtension(expand("%:t:r"), g:src_extensions)<cr>
 
 " Make sure MRU is mapped (is otherwise in conflict with CoC-plugin).
 map <leader>f :MRU<CR>
