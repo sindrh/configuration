@@ -62,5 +62,11 @@ let src_extensions=[".cpp", ".c", ".cxx"]
 map <leader>gt :call FindFileWithExtension(expand("%:t:r"), header_extensions)<cr>
 map <leader>gb :call FindFileWithExtension(expand("%:t:r"), src_extensions)<cr>
 
+" Make sure MRU is mapped (is otherwise in conflict with CoC-plugin).
+map <leader>f :MRU<CR>
+
+" Disable ALE. Seems like CoC provides similar functionality.
+let g:ale_enabled=0
+
 " Look for a .vimlocal file in the same folder where VIM is started. Nice for project-specific settings.
 silent! so .vimlocal
