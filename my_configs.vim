@@ -63,6 +63,17 @@ let g:src_extensions=[".cpp", ".c", ".cxx"]
 map <leader>gt :call FindFileWithExtension(expand("%:t:r"), g:header_extensions)<cr>
 map <leader>gb :call FindFileWithExtension(expand("%:t:r"), g:src_extensions)<cr>
 
+" Function to run a command in an open terminal (if only one is open).
+" Use this to map custom commands in .vimlocal.
+function RunCommandInTerminal(command)
+    let terms = term_list()
+    if len(terms) == 1
+        let term = get(terms, 0)
+        call term_sendkeys(term, a:command . "\<CR>")
+    endif
+endfunction
+
+
 " Make sure MRU is mapped (is otherwise in conflict with CoC-plugin).
 map <leader>f :MRU<CR>
 
