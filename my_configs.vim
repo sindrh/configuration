@@ -73,6 +73,34 @@ function RunCommandInTerminal(command)
     endif
 endfunction
 
+let g:terminal_rows=8
+let g:terminal_rows_tmp = g:terminal_rows
+" This is useful when splitting the window up for the terminal.
+set splitbelow
+
+
+" - Opens a new terminal if not open already and sets default size.
+" - Hide open terminal (set size to 1) if the size is other than 1.
+" - Set to previous size if terminal is hidden (size is 1).
+" - It is recommended to use 'set splitbelow' before using this function. 
+function ToggleTerminal()
+    let terms = term_list()
+    if len(terms) == 1
+        let term = get(terms, 0)
+        let sizenow = term_getsize(term)
+        if get(sizenow, 0) == 1
+            call term_setsize(term, g:terminal_rows_tmp, 0)
+        else
+            let g:terminal_rows_tmp=get(sizenow, 0)
+            call term_setsize(term, 1, 0)
+        endif
+    else
+        execute("terminal ++rows=" . g:terminal_rows)
+        call feedkeys("\<C-W>\<C-p>")
+    endif
+endfunction
+
+map <leader>tt :call ToggleTerminal()<CR>
 
 " Make sure MRU is mapped (is otherwise in conflict with CoC-plugin).
 map <leader>f :MRU<CR>
