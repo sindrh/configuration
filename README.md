@@ -34,3 +34,8 @@ Windows):
 sh patch_mru_plugin.sh
 ```
 
+## Terminal usage
+
+You need a newer version of VIM to use the terminal (at least 8.0 and probably 8.2 to resize it). Toggle the terminal
+using ``<leader>tt``. If you want to cut/paste or scroll, press ``Ctrl-w N`` and go to the terminal by pressing ``i``.
+
