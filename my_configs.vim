@@ -44,10 +44,13 @@ else
     let g:find_cmd="find"
 endif
 
-function FindFileWithExtension(filename, endings)
+let g:include_dir="."
+let g:src_dir="."
+
+function FindFileWithExtension(root_path, filename, endings)
     for i in a:endings
         let filename_full=a:filename . i
-        let result=system("\"" . g:find_cmd . "\"" . ' -iname ' . filename_full)
+        let result=system("\"" . g:find_cmd . "\" \"" . a:root_path . "\"" . ' -iname ' . filename_full)
         if result != ""
             execute "e " . result
             return
@@ -60,8 +63,8 @@ let g:header_extensions=[".h", ".hpp"]
 let g:src_extensions=[".cpp", ".c", ".cxx"]
 
 " Switch between header and source file using <leader> + shortcut
-map <leader>gt :call FindFileWithExtension(expand("%:t:r"), g:header_extensions)<cr>
-map <leader>gb :call FindFileWithExtension(expand("%:t:r"), g:src_extensions)<cr>
+map <leader>gt :call FindFileWithExtension(g:include_dir, expand("%:t:r"), g:header_extensions)<cr>
+map <leader>gb :call FindFileWithExtension(g:src_dir, expand("%:t:r"), g:src_extensions)<cr>
 
 " Function to run a command in an open terminal (if only one is open).
 " Use this to map custom commands in .vimlocal.
