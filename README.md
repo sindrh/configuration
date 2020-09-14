@@ -25,6 +25,12 @@ You may define project-specific settings, such as build commands, in a file name
 the root of the project and make sure to start Vim in this root folder. The file is written in Vim-script and contains
 scripts that are too project-specfic to be in ``.vimrc``.
 
+### Toggle between ``include`` and ``src`` folder
+
+Jump to ``include`` folder using ``<leader>gt`` or to ``src`` folder using ``<leader>gb``. By default, the search
+starts from the root folder and search for C/C++ headers, but this may be fine-tuned by setting the variables
+``g:include_dir``, ``g:src_dir``, ``g:header_extensions`` and ``g:src_extensions``.
+
 ## Patch for MRU plugin
 
 The ``MRU`` command opens a new window in the bottom, but this window will automatically resize an open terminal window.
